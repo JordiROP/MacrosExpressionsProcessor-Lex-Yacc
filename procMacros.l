@@ -20,6 +20,10 @@
 
 "+"|"-"|"*"|"/" { strcpy(yylval.s, yytext); return OP; }
 
+"." { return DOT; }
+
+"lamda" { return LAMDA; }
+
 [0-9]+ { strcpy(yylval.s, yytext); return NUMBER; }
 
 [a-zA-Z] { strcpy(yylval.s, yytext); return VAR; }

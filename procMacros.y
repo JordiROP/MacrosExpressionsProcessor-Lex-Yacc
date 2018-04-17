@@ -1,8 +1,6 @@
 %{
 #include <stdio.h>
-#include <stdlib.h>
 #include <string.h>
-#include <ctype.h>
 
 void doJob(char var, char sim ,char str[512]);
 void yyerror( char *m );
@@ -27,12 +25,10 @@ char vars[123][512] = {{"\0"}};
 }
 
 %type <exp> expr
-
 %token <s> VAR
 %token <s> NUMBER
 %token <s> OP
 %token <s> OPAR CPAR
-
 %token EQ LAMDA DOT
 %token SEMICOLON
 

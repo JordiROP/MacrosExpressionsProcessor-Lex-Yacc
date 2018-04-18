@@ -46,7 +46,7 @@ expr_lst : expr_lst expr SEMICOLON  { doJob($2 -> var, $2 -> sim, $2); }
 expr :
     VAR EQ expr         { $$ = $3; $$ -> var = $1[0]; $$ -> sim = '=';  }
     | expr OP expr      { $$ = newNode($2); $$ -> left = $1; $$ -> right = $3; }
-    | OPAR expr CPAR    { strcpy(tmp, "(\0"); strcat(tmp, $2 -> data); strcat(tmp, ")\0"); $$ = newNode(tmp); }
+    | OPAR expr CPAR    { strcpy(tmp, $1); strcat(tmp, $2 -> data); strcat(tmp, $3); $$ = newNode(tmp); }
     | VAR               {
                             if(vars[$1[0]] != NULL){
                                 strcpy(tmp, "(\0");
@@ -57,7 +57,7 @@ expr :
                                 $$ = newNode(tmp);
                             }else{ $$ = newNode($1); }
                         }
-    | NUMBER            { $$ = newNode($1); printf("%s\n",$1); }
+    | NUMBER            { $$ = newNode($1);}
     | LAMDA idlist DOT expr { }
     ;
 

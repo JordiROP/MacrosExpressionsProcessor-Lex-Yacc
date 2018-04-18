@@ -57,7 +57,7 @@ expr :
                                 $$ = newNode(tmp);
                             }else{ $$ = newNode($1); }
                         }
-    | NUMBER            { $$ = newNode($1); printf("%s\n",$1); }
+    | NUMBER            { $$ = newNode($1); }
     | LAMDA idlist DOT expr { }
     ;
 

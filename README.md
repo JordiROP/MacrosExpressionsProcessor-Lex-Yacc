@@ -45,4 +45,4 @@ The goal of this project is to develop a simple macro expression processor using
 
 ## License
 
-This project is licensed under the MIT License - see the [LICENSE.md](LICENSE.md) file for details
+This project is licensed under the MIT License - see the [LICENSE.md](https://github.com/JordiROP/MacrosExpressionsProcessor-Lex-Yacc/blob/master/LICENSE) file for details

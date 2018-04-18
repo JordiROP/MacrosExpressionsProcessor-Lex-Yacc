@@ -19,7 +19,6 @@ The goal of this project is to develop a simple macro expression processor using
 3. Creating and initializing variales with a lamda.
   ```
   x := lambda a, b . 3 + a * b
-  b + x c d
   ```
 4. Giving an expression with a lamda.
   ```

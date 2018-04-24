@@ -1,6 +1,7 @@
 %{
 #include <stdio.h>
 #include <string.h>
+#include <ctype.h>
 
 struct node* newNode(char data[512]);
 void bracketLeft(struct node* node);
@@ -14,6 +15,8 @@ int yylex();
 struct node{
         char sim;
         char var;
+        int isLamda;
+        char idlist[512];
         char data[512];
         struct node *left;
         struct node *right;
@@ -28,6 +31,7 @@ struct node *vars[123] = {NULL};
 }
 
 %type <exp> expr
+%type <s> idlist
 %token <s> VAR
 %token <s> NUMBER
 %token <s> OP
@@ -47,15 +51,15 @@ expr_lst : expr_lst expr SEMICOLON  { doJob($2 -> var, $2 -> sim, $2); }
 expr :
     VAR EQ expr         { $$ = $3; $$ -> var = $1[0]; $$ -> sim = '=';  }
     | expr OP expr      { $$ = newNode($2); $$ -> left = $1; $$ -> right = $3; }
+    | expr OP idlist    { $$ = newNode($2); $$ -> left = $1; strcpy($$ -> idlist, $3); }
     | OPAR expr CPAR    { strcpy(tmp, $1); strcat(tmp, $2 -> data); strcat(tmp, $3); $$ = newNode(tmp); }
-    | VAR               { if(vars[$1[0]] != NULL){ $$ = vars[$1[0]]; }else{ $$ = newNode($1); }
-                        }
+    | VAR               { $$ = newNode($1);}
     | NUMBER            { $$ = newNode($1);}
-    | LAMDA idlist DOT expr { }
+    | LAMDA idlist DOT expr { $$ = $4; $$->isLamda = 1; strcpy($$->idlist, $2);}
     ;
 
-idlist: idlist VAR { }
-    | VAR { }
+idlist: idlist VAR {strcpy($$, $1); strcat($$, $2); }
+    | VAR { strcpy($$, $1);}
 %%
 
 struct node* newNode(char data[512]){
@@ -87,14 +91,18 @@ void bracketRight(struct node* node){
 void printTree(struct node* node) {
   if (node == NULL) return;
   printTree(node->left);
-  printf("%s", node->data);
+  if(isalpha(node->data[0]) && vars[node->data[0]] != NULL){
+    printf("(");
+    printTree(vars[node->data[0]]);
+    printf(")");
+  }else{
+    printf("%s", node->data);
+  }
   printTree(node->right);
 }
 
 void doJob(char var, char sim, struct node* node){
     if(sim == '='){
-        bracketLeft(node);
-        bracketRight(node);
         vars[var] = node;
     }else{
         printTree(node);

@@ -7,12 +7,12 @@ Subject directed by Dr.Jordi Planes Cid.
 The goal of this project is to develop a simple macro expression processor using a binary tree as a data structure.
 
 ## Input
-1. Creating and initializing variables.
+1. Creating and initializing variables.  
   ```
-  x := a + 3;
+  x := a + 3;  
   y := x * 2;
   ```
-2. Giving an expression.
+2. Giving an expression.  
   ```
    y + x + b;
   ```
@@ -24,10 +24,12 @@ The goal of this project is to develop a simple macro expression processor using
   ```
   4 + h a b;
   ```
-5. Giving an expression with lamda that has a variable assigned to a macro.
+5. Giving an expression with lamda that has a variable assigned to a macro.  
   ```
-  z := lamda t ,w ,s . 3 + t * s - w;
-  p - z y b c;
+  z := lamda t ,w ,s . 3 + t * s - w;  
+  ```  
+  ```
+  p - z y b c;
   ```
 ## Output
 1. For the given expression in 2.

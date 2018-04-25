@@ -52,7 +52,7 @@ The goal of this project is to develop a simple macro expression processor using
 [C/C++] - Code implementation.
 
 ## Authors
-* **Jordi Onrubia** - *Programming* - [JordiROP](https://github.com/JordiROP)
+* **Jordi Ricard Onrubia Palacios** - *Programming* - [JordiROP](https://github.com/JordiROP)
 
 ## License
 

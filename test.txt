@@ -3,7 +3,7 @@ y := x*2;
 y + x + b;
 h := lambda q,w.1+q*w;
 4 + h a b;
-z := lambda t,w,s.3+t*s-w;
+z := lambda t ,w ,s . 3 + t*s-w;
 p - z y b c;
 z :=          lambda      t,      w,          s . 3+      t*s         -w;
 z y                            b c;

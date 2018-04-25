@@ -1,7 +1,9 @@
-x:=a+3;
-y:=x*2;
-y+x+b;
-h:=lamda q,w.1+q*w;
-4+hab;
-z:=lamda t,w,s.3+t*s-w;
-p-zybc;
+x := a+3;
+y := x*2;
+y + x + b;
+h := lambda q,w.1+q*w;
+4 + h a b;
+z := lambda t,w,s.3+t*s-w;
+p - z y b c;
+z :=          lambda      t,      w,          s . 3+      t*s         -w;
+z y                            b c;

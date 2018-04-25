@@ -7,9 +7,9 @@ struct node* newNode(char data[512]);
 
 void doJob(char var, char sim, struct node *dat);
 void printTree(struct node* node);
-void printLamda(struct node* node,char* idlistNode, char *idlistlamda);
+void printlambda(struct node* node,char* idlistNode, char *idlistlambda);
 int isMacro(struct node* node);
-int isLamda(struct node* node);
+int islambda(struct node* node);
 void yyerror( char *m );
 int yylex();
 
@@ -17,7 +17,7 @@ int yylex();
 struct node{
         char sim;
         char var;
-        int isLamda;
+        int islambda;
         char idlist[512];
         char data[512];
         struct node *left;
@@ -38,7 +38,7 @@ struct node *vars[123] = {NULL};
 %token <s> NUMBER
 %token <s> OP
 %token <s> OPAR CPAR
-%token EQ LAMDA DOT COMMA
+%token EQ LAMBDA DOT COMMA
 %token SEMICOLON
 
 %left DOT
@@ -59,7 +59,7 @@ expr :
     | VAR               { $$ = newNode($1);}
     | expr idlist       { $$ = $1; strcat($$->idlist, $2);}
     | NUMBER            { $$ = newNode($1);}
-    | LAMDA idlist DOT expr { $$ = $4; $$->isLamda = 1; strcpy($$->idlist, $2);}
+    | LAMBDA idlist DOT expr { $$ = $4; $$->islambda = 1; strcpy($$->idlist, $2);}
     ;
 
 idlist: idlist COMMA VAR {strcpy($$, $1); strcat($$, $3); }
@@ -77,14 +77,14 @@ struct node* newNode(char data[512]){
   return(node);
 }
 
-void printLamda(struct node* node,char* idlistNode, char *idlistlamda){
+void printlambda(struct node* node,char* idlistNode, char *idlistlambda){
   int i;
   if (node == NULL) return;
-  printLamda(node->left, idlistNode, idlistlamda);
+  printlambda(node->left, idlistNode, idlistlambda);
   for(i=0; idlistNode[i] != '\0'; i++){
     if(idlistNode[i] == node->data[0]){
-      idlistNode[i] = idlistlamda[i];
-      node->data[0] = idlistlamda[i];
+      idlistNode[i] = idlistlambda[i];
+      node->data[0] = idlistlambda[i];
     }
   }
   if(isMacro(node)){
@@ -94,13 +94,13 @@ void printLamda(struct node* node,char* idlistNode, char *idlistlamda){
   }else{
     printf("%s", node->data);
   }
-  printLamda(node->right, idlistNode, idlistlamda);
+  printlambda(node->right, idlistNode, idlistlambda);
 }
 
 void printTree(struct node* node) {
   if (node == NULL) return;
-  if(isMacro(node) && isLamda(node)){
-    printLamda(vars[node->data[0]],vars[node->data[0]]->idlist, node->idlist);
+  if(isMacro(node) && islambda(node)){
+    printlambda(vars[node->data[0]],vars[node->data[0]]->idlist, node->idlist);
   }else{
     printTree(node->left);
     if(isMacro(node)){
@@ -118,8 +118,8 @@ int isMacro(struct node* node){
   return (isalpha(node->data[0]) && vars[node->data[0]] != NULL);
 }
 
-int isLamda(struct node* node){
-  return vars[node->data[0]]->isLamda == 1;
+int islambda(struct node* node){
+  return vars[node->data[0]]->islambda == 1;
 }
 
 void doJob(char var, char sim, struct node* node){

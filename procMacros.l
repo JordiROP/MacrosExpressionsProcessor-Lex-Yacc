@@ -24,7 +24,7 @@
 
 "," {return COMMA; }
 
-"lamda" { return LAMDA; }
+"lambda" { return LAMBDA; }
 
 [0-9]+ { strcpy(yylval.s, yytext); return NUMBER; }
 

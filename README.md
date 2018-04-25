@@ -35,11 +35,11 @@ The goal of this project is to develop a simple macro expression processor using
   ```
   ((a+3)*2)+(a+3)+b
   ```
-2. For the given expression in 4.
+2. For the given expression in 4.  
   ```
   4+1+a*b
   ```
-3. For the given expression in 5.
+3. For the given expression in 5.  
   ```
   p-3+((a+3)*2)*c-b
   ```

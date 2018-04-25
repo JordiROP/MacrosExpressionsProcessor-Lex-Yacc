@@ -100,7 +100,9 @@ void printlambda(struct node* node,char* idlistNode, char *idlistlambda){
 void printTree(struct node* node) {
   if (node == NULL) return;
   if(isMacro(node) && islambda(node)){
+    printf("(");
     printlambda(vars[node->data[0]],vars[node->data[0]]->idlist, node->idlist);
+    printf(")");
   }else{
     printTree(node->left);
     if(isMacro(node)){

@@ -16,19 +16,18 @@ The goal of this project is to develop a simple macro expression processor using
   ```
    y + x + b;
   ```
-3. Creating and initializing variales with a lamda.
+3. Creating and initializing variales with a lamda.  
   ```
   h := lamda q , w . 1 + q * w;
   ```
-4. Giving an expression with a lamda.
+4. Giving an expression with a lamda.  
   ```
   4 + h a b;
   ```
 5. Giving an expression with lamda that has a variable assigned to a macro.  
   ```
   z := lamda t ,w ,s . 3 + t * s - w;  
-  ```  
-  ```
+  
   p - z y b c;
   ```
 ## Output

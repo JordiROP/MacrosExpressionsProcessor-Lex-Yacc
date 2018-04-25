@@ -1,3 +1,7 @@
 x:=a+3;
 y:=x*2;
 y+x+b;
+h:=lamda q,w.1+q*w;
+4+hab;
+z:=lamda t,w,s.3+t*s-w;
+p-zybc;

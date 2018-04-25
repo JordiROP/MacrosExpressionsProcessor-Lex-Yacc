@@ -22,6 +22,8 @@
 
 "." { return DOT; }
 
+"," {return COMMA; }
+
 "lamda" { return LAMDA; }
 
 [0-9]+ { strcpy(yylval.s, yytext); return NUMBER; }
